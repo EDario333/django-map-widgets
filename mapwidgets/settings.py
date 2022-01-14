@@ -1,7 +1,10 @@
 from collections import OrderedDict
 
 from django.conf import settings as django_settings
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError: # Django 4 (tested with Django 4.0)
+    from django.utils.translation import gettext_lazy as _
 from django.test.signals import setting_changed
 
 from mapwidgets.constants import TIMEZONE_COORDINATES
